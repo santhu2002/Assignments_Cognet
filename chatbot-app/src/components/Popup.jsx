@@ -37,11 +37,11 @@ const Popup = ({
   return (
     <div
       ref={modelref}
-      className={`fixed inset-0 flex items-center justify-center flex-col m-auto bg-black bg-opacity-30 backdrop-blur-sm z-50 ${
+      className={`absolute z-50 h-[100%] flex items-center justify-center flex-col m-auto bg-black bg-opacity-30 backdrop-blur-sm w-full ${
         closing ? "animate-slideDown" : "animate-slideUp"
       }`}
     >
-      <div className="flex flex-col w-[300px] md:w-[37%] animate-scaleUp">
+      <div className="flex flex-col  animate-scaleUp">
         <div className="flex  justify-between items-center  rounded-xl rounded-b-none p-4 bg-black ">
           <p className="text-white font-semibold">
             Enter Details to access the chatbot
