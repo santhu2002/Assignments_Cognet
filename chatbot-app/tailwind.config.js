@@ -6,6 +6,15 @@ export default {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
+		animation: {
+			scaleUp: 'scaleUp 2.0s ease-in-out',
+		  },
+		  keyframes: {
+			scaleUp: {
+			  '0%': { transform: 'scale(0)' },
+			  '100%': { transform: 'scale(1)' },
+			},
+		  },
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

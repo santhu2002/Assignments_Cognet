@@ -13,11 +13,12 @@ import { Input } from "./components/ui/input";
 import { Button } from "./components/ui/button";
 import { Bot } from "lucide-react";
 import Messages from "./components/Messages";
+import Popup from "./components/Popup";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("John");
+  const [email, setEmail] = useState("dummy@gmail.com");
   const [messages, setMessages] = useState([]);
   const [msg, setMsg] = useState("");
 
@@ -31,7 +32,7 @@ function App() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (isValidName(name) && isValidEmail(email)) {
       setIsOpen(false);
       setMessages([...messages, {text: `${name} Welcome to our chatbot!`, type: "bot"}])
@@ -50,17 +51,22 @@ function App() {
 
 
   const usermessage = () => {
+    if(!msg) return;
     const userMessage = { text: msg, type: "user" };
     const botReply = { text: randomReplies[Math.floor(Math.random() * randomReplies.length)], type: "bot" };
   
     setMessages([...messages, userMessage, botReply]); 
     setMsg(""); 
   };
+
+  const closemodel = () => {
+    setIsOpen(!isOpen);
+  }
   
 
   return (
     <div className="w-full flex h-[92vh]">
-      <Dialog
+      {/* <Dialog
         open={isOpen}
       >
         <DialogContent className="w-full sm:max-w-[450px]">
@@ -106,7 +112,18 @@ function App() {
             </DialogFooter>
           </form>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
+      {
+        isOpen && <Popup open={closemodel} 
+        name={name}
+        setName={setName}
+        email={email}
+        setEmail={setEmail}
+        handleSubmit={handleSubmit}
+        isValidEmail={isValidEmail}
+        isValidName={isValidName}
+         />
+      }
 
       <div className="flex  max-w-3xl  w-full mx-auto bg-white flex-col md:rounded-t-xl shadow-2xl md:mt-8">
         <div className="bg-gray-400 flex items-center gap-4 text-white p-4 md:rounded-t-xl sticky top-0">
