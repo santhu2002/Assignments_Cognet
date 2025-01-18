@@ -69,7 +69,7 @@ function Chatbot() {
   };
 
   return (
-    <div className="sm:w-full w-[80vw] flex h-[70vh] ">
+    <div className="sm:w-full w-[80vw] flex h-[60vh] ">
       <Dialog
           open={isOpen}
         >

@@ -13,9 +13,9 @@ function App() {
       <h1 className="text-center text-3xl font-bold p-4">CHATBOT APP</h1>
 
       {isChatOpen && (
-        <div className="fixed bottom-10 right-5">
+        <div className="fixed bottom-5 right-5">
           <Chatbot />
-          <div className="flex justify-end p-5 ">
+          <div className="flex justify-end p-3 ">
             <X
               size={40}
               color="white"
