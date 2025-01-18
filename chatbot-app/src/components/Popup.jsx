@@ -24,14 +24,22 @@ const Popup = ({
     }
   };
 
+  const [closing, setClosing] = useState(false);
+
   const handleSubmit1 = async (e) => {
     e.preventDefault();
-    handleSubmit();
+    setClosing(true);
+    setTimeout(() => {
+      handleSubmit();
+      open();
+    }, 500);
   };
   return (
     <div
       ref={modelref}
-      className="fixed inset-0 flex items-center justify-center flex-col m-auto bg-black bg-opacity-30 backdrop-blur-sm z-50"
+      className={`fixed inset-0 flex items-center justify-center flex-col m-auto bg-black bg-opacity-30 backdrop-blur-sm z-50 ${
+        closing ? "animate-slideDown" : "animate-slideUp"
+      }`}
     >
       <div className="flex flex-col w-[300px] md:w-[37%] animate-scaleUp">
         <div className="flex  justify-between items-center  rounded-xl rounded-b-none p-4 bg-black ">
