@@ -69,7 +69,7 @@ function Chatbot() {
   };
 
   return (
-    <div className="w-full flex sm:h-[70vh] h-[100vh]">
+    <div className="sm:w-full w-[80vw] flex h-[70vh] ">
       <Dialog
           open={isOpen}
         >
@@ -119,7 +119,7 @@ function Chatbot() {
         </Dialog>
 
       <div className="flex  max-w-3xl  w-full mx-auto bg-white flex-col md:rounded-t-xl shadow-2xl md:mt-8">
-        <div className="bg-gray-400 flex items-center gap-4 text-white p-4 md:rounded-t-xl sticky top-0">
+        <div className="bg-gray-400 flex items-center gap-4 text-white p-4 rounded-t-xl sticky top-0">
           <Bot size={48} />
           <div>
             <h1 className="text-xl font-bold">Chatbot</h1>
