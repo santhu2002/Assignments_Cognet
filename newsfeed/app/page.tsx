@@ -2,8 +2,15 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 
+interface Post {
+  id: string;
+  text: string;
+  image_url?: string;
+  created_at: string;
+}
+
 export default function HomePage() {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     const fetchPosts = async () => {

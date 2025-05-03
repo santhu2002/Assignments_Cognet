@@ -4,11 +4,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { User } from "@supabase/supabase-js";
 
 export const Header = () => {
   const router = useRouter();
 
-  const [currentUser, setcurrentUser] = useState<any>(null);
+  const [currentUser, setcurrentUser] = useState<User | null>(null);
 
   useEffect(() => {
     const checkUser = async () => {
@@ -32,7 +33,7 @@ export const Header = () => {
     return () => {
       subscription.unsubscribe();
     };
-  }, [supabase, router]);
+  }, [router]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
