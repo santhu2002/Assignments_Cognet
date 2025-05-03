@@ -8,6 +8,7 @@ export default function DashboardPage() {
   const [text, setText] = useState('');
   const [image, setImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(true);
+  const [postupload, setPostUpload] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -27,12 +28,15 @@ export default function DashboardPage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
+    setPostUpload
     let imagePath = '';
     if (image) {
       try {
         imagePath = await uploadImage(image);
       } catch (err) {
         console.error('Image upload failed:', err);
+        alert('Image upload failed. Please try again.');
+        setPostUpload(false);
         return;
       }
     }
@@ -45,6 +49,7 @@ export default function DashboardPage() {
 
     setText('');
     setImage(null);
+    setPostUpload(false);
     router.push('/');
   };
 
@@ -68,6 +73,7 @@ export default function DashboardPage() {
       <button
         className="bg-green-600 text-white px-4 py-2 rounded"
         onClick={handlePost}
+        disabled={postupload}
       >
         Post
       </button>
