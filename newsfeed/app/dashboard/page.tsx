@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '../../lib/supabase';
 import { useRouter } from 'next/navigation';
+import { uploadImage } from '@/lib/uploadimage';
 
 export default function DashboardPage() {
   const [text, setText] = useState('');
@@ -28,16 +29,12 @@ export default function DashboardPage() {
 
     let imagePath = '';
     if (image) {
-      const formData = new FormData();
-      formData.append('file', image);
-
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await res.json();
-      imagePath = data.filePath;
+      try {
+        imagePath = await uploadImage(image);
+      } catch (err) {
+        console.error('Image upload failed:', err);
+        return;
+      }
     }
 
     await supabase.from('posts').insert({
