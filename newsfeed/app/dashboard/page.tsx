@@ -28,7 +28,6 @@ export default function DashboardPage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
 
-    setPostUpload
     let imagePath = '';
     if (image) {
       try {
